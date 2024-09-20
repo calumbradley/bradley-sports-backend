@@ -40,7 +40,6 @@ const plugins = [
     resolve: `@medusajs/file-local`,
     options: {
       upload_dir: "uploads",
-      autoRebuild: true,
     },
   },
   {
