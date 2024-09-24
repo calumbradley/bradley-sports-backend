@@ -25,8 +25,22 @@ public async up(queryRunner: QueryRunner): Promise<void> {
 
 ### 3. Run the Migration
 
+Before you can run the migrations, you need to run the build command to transpile the TypeScript files to JavaScript files:
+
+```bash
+npm run build
+```
+
 ```bash
 npx typeorm migration:run
 ```
 
+```bash
+npx medusa migrations run
+```
+
 - Check your PostgreSQL database for the new app_config table.
+
+# Acknowledgements
+
+- [MedusaJs Migrations](https://docs.medusajs.com/development/entities/migrations/create#option-2-write-migration-file)
