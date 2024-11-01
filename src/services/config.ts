@@ -2,7 +2,7 @@
 import { TransactionBaseService } from "@medusajs/medusa";
 import { AppConfig } from "../models/config";
 
-class AppConfigService extends TransactionBaseService {
+class ConfigService extends TransactionBaseService {
   constructor({ manager }) {
     super(arguments[0]);
     this.manager_ = manager;
@@ -14,4 +14,4 @@ class AppConfigService extends TransactionBaseService {
   }
 }
 
-export default AppConfigService;
+export default ConfigService;

@@ -3,10 +3,10 @@ import type { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   console.log(`${req.path} API route hit at ${new Date()}`);
 
-  const appConfigService = req.scope.resolve("appConfigService");
+  const configService = req.scope.resolve("configService");
 
   try {
-    const appConfigData = await appConfigService.list();
+    const appConfigData = await configService.list();
 
     res.json({
       success: true,
