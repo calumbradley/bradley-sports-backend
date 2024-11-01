@@ -1,9 +1,12 @@
-import { BeforeInsert, Entity, Column } from "typeorm";
-import { BaseEntity } from "@medusajs/medusa";
+// src/models/config.ts
+import { BeforeInsert, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import { generateEntityId } from "@medusajs/medusa/dist/utils";
 
-@Entity()
-export class AppConfig extends BaseEntity {
+@Entity({ name: "app_config" })
+export class AppConfig {
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
+
   @Column()
   global_app_password_protection: boolean;
 

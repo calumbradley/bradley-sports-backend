@@ -1,18 +1,27 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
-  // Get the relative path (without query params)
-  console.log(`${req.path} api route hit at ${new Date()}`);
-  const appConfigService = req.scope.resolve("appConfigService");
-  const message = appConfigService.getMessage();
-  const fullUrl = req.originalUrl;
-  const routePath = req.path;
-  const currentDateTime = new Date();
+  console.log(`${req.path} API route hit at ${new Date()}`);
 
-  res.json({
-    message,
-    fullUrl,
-    routePath,
-    currentDateTime,
-  });
+  const appConfigService = req.scope.resolve("appConfigService");
+
+  try {
+    const appConfigData = await appConfigService.list();
+
+    res.json({
+      success: true,
+      data: appConfigData,
+      metadata: {
+        fullUrl: req.originalUrl,
+        routePath: req.path,
+        currentDateTime: new Date(),
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching app config data:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve app configuration data",
+    });
+  }
 };
