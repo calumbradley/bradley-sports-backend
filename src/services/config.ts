@@ -1,4 +1,3 @@
-// src/services/app-config.ts
 import { TransactionBaseService } from "@medusajs/medusa";
 import { AppConfig } from "../models/config";
 
