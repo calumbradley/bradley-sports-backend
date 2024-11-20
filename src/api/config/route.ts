@@ -1,8 +1,6 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
-  console.log(`${req.path} API route hit at ${new Date()}`);
-
   const configService = req.scope.resolve("configService");
 
   try {
@@ -10,7 +8,11 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 
     res.json({
       success: true,
-      data: appConfigData,
+      data: {
+        id: appConfigData[0].id,
+        global_app_password_protection:
+          appConfigData[0].global_app_password_protection,
+      },
       metadata: {
         fullUrl: req.originalUrl,
         routePath: req.path,
